@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container">
+  <div class="container">
 
     <b-alert show class="photo-heading"> Object Identifier</b-alert>
     <div class="row col-12">
