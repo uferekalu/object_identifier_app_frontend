@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-6 mb-3" v-for="image in info" v-bind:key="image.id">
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-3" v-for="image in images" v-bind:key="image.id">
             <ImageComp v-bind:image="image" />
         </div>
     </div>
@@ -15,7 +15,8 @@ export default {
     components: {
         ImageComp,
     },
-    props: ["info"]
+    props: ["images"],
+    
 }
 </script>
 
