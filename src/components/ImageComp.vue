@@ -6,9 +6,18 @@
         <!-- <router-link to='/detail'> -->
         <!-- <router-link :to="{ name: 'detail', params: { imageId: image.id }}"> -->
 
-            <div class="card" style="height: 400px;">
-                <div class="mr-2 my-1" style="color: red; position: absolute; right:0;">
-                    <font-awesome-icon :icon="['fas', 'trash']" v-on:click="deleteItem()"/>
+
+            <div class="card" v-if="showInDOM" style="height: 400px;">
+                <div class="mr-2 my-1" style="color: red; position: absolute; right:0; bottom:0">
+                    <button class="btn btn-sm btn-outline-danger" v-on:click="deleteItem()">
+                        <span v-if="deleting">
+                            <font-awesome-icon :icon="['fas', 'spinner']" />
+                        </span>
+                        <span v-else>
+                            <font-awesome-icon :icon="['fas', 'trash']" />
+                        </span>
+                    </button>
+                    
                 </div>
                 
                 <img 
@@ -38,9 +47,12 @@ export default {
     name: "ImageComp",
     props: ["image"],
 
+
     data() {
         return {
-            objectsArray: []
+            deleting: false,
+            objectsArray: [],
+            showInDOM: true
         }
     },
 
@@ -56,14 +68,33 @@ export default {
 
     methods: {
         deleteItem() {
-            console.log(this.image.id)
-            axios.delete(`https://fakestoreapi.com/products/${image.id}`)
-                .then(response => {
-                    console.log(response)
-                })
-                .catch(error => {
-                    console.log(error)
-                })
+            const query = `mutation deleteImage {
+                            deleteImage(
+                              id: ${this.image.id}
+                            ) {
+                              ok
+                            }
+                          }`
+            
+            let formData = new FormData();
+            formData.append('query', query);
+            this.deleting = true;
+            axios.post('https://django-graphql-imageid.ew.r.appspot.com/graphql/', formData,
+                {
+                    headers: {
+                        'Content-Type': 'application/graphql',
+                        'Access-Control-Allow-Origin': '*'
+                    }
+                }
+            )
+            .then(response => {
+                this.deleting = false;
+                this.showInDOM = false;
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
         }
     }
 }

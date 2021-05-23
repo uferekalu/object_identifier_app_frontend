@@ -55,7 +55,7 @@
     </section>
 
     <section v-else>
-      <div v-if="loading" class="col-2 card mx-auto py-5">
+      <div v-if="loading" class="col-3 card mx-auto py-5">
         <span class="mx-auto">
           <font-awesome-icon :icon="['fas', 'spinner']" /> Loading...
         </span>
