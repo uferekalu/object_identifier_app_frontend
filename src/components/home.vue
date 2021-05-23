@@ -15,6 +15,9 @@
     <section v-if="empty">
       <b-alert show class="alert-danger"> You must select an image to upload!</b-alert>
     </section>
+    <section v-if="uploadError">
+      <b-alert show class="alert-danger"> No Face Detected! Please Upload an Image with a face!</b-alert>
+    </section>
 
     <div class="row col-12">
         <div class="card mx-auto justify-content-center">
@@ -88,6 +91,7 @@ export default {
         loading: false,
         uploading: false,
         error: false,
+        uploadError: false,
         success: false,
         empty: false
     }
@@ -97,7 +101,7 @@ export default {
     axios
       .get('https://django-graphql-imageid.ew.r.appspot.com/graphql/?query=query getImages {images {id image url imgObjects}}', )
       .then(response => {
-        this.images = response.data.data.images
+          this.images = response.data.data.images
       })
       .catch(error => {
         console.log(error)
@@ -141,8 +145,10 @@ export default {
             )
             .then(response => {
               console.log(response)
-              // this.result = response.data.id
-              this.success = true
+              if(response.data.errors) 
+                this.uploadError = true
+              else
+                this.success = true
             })            
             .catch(error => {
                 console.log(error)

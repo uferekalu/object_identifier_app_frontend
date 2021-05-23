@@ -1,6 +1,24 @@
-# object_identifier_vue_pro
+# Image Objects Identifier Frontend Built with VueJs and hosted on Google Firebase
 
-> A Vue.js project
+[![Open in Browser][shell_img]][shell_link]
+
+[shell_img]: http://gstatic.com/cloudssh/images/open-btn.png
+[shell_link]: https://image-object-identifier-vue.web.app/
+
+https://image-object-identifier-vue.web.app/
+
+Object identifier on images using [Vue Js](https://vuejs.org/) 
+and [Google Firebase](https://firebase.google.com/) for hosting
+
+
+## New Feature - Face Detection
+Rejects images with no face detected
+
+## Application Features
+- GET IMAGES
+- UPLOAD IMAGE
+- DELETE IMAGE
+
 
 ## Build Setup
 
@@ -18,4 +36,4 @@ npm run build
 npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
