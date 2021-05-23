@@ -19,28 +19,30 @@
       <b-alert show class="alert-danger"> No Face Detected! Please Upload an Image with a face!</b-alert>
     </section>
 
-    <div class="row col-12">
+    <div class="row col-12 mt-5">
         <div class="card mx-auto justify-content-center">
-          <h5 class="row col-12 my-3 align-items-center justify-content-center">Upload an Image to Analyse</h5>
-          <div class="row col-12 my-3 align-items-center justify-content-center mx-auto">
-              <label>
-                  <input 
-                    class="btn btn-success" 
-                    type="file" 
-                    id="file" ref="file" v-on:change="handleFileUpload()"/>
-              </label>
-              <div class="row col-12 my-3 align-items-center justify-content-center">
-                <button type="button" class="btn btn-primary btn-md" v-on:click="submitFile()">
-                  <span v-if="uploading">
-                    <font-awesome-icon :icon="['fas', 'spinner']" /> 
-                    <span>Uploading...</span>
-                  </span>
-                  <span v-else>
-                    <font-awesome-icon :icon="['fas', 'upload']" />
-                    <span>Upload</span>
-                  </span>
-                </button>
-              </div>
+          <div class="card-body">
+            <h5 class="row col-12 my-3 align-items-center justify-content-center card-title">Upload an Image to Analyse</h5>
+            <div class="row col-12 my-3 align-items-center justify-content-center mx-auto">
+                <label>
+                    <input 
+                      class="btn btn-success" 
+                      type="file" 
+                      id="file" ref="file" v-on:change="handleFileUpload()"/>
+                </label>
+                <div class="row col-12 my-3 align-items-center justify-content-center">
+                  <button type="button" class="btn btn-primary btn-md" v-on:click="submitFile()">
+                    <span v-if="uploading">
+                      <font-awesome-icon :icon="['fas', 'spinner']" /> 
+                      <span>Uploading...</span>
+                    </span>
+                    <span v-else>
+                      <font-awesome-icon :icon="['fas', 'upload']" />
+                      <span>Upload</span>
+                    </span>
+                  </button>
+                </div>
+            </div>
           </div>
         </div>
     </div>
